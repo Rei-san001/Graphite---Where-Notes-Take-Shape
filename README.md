@@ -1,6 +1,5 @@
 # Next.js Web Development Project
-
-This repository contains a complete web application we built while following a full 7-hour Next.js tutorial.  
+ 
 Our goal was to learn modern full-stack web development by building a real project from scratch.
 
 We explored how Next.js works, how frontend and backend connect, and how real-world projects are structured.
@@ -30,7 +29,7 @@ It serves as a learning project as well as a solid starting template for future 
 - **Tailwind CSS**  
 - **JavaScript/TypeScript**  
 - **API Routes / Server Actions**  
-- **(Optional)** Database (depending on tutorial)
+- **Database**
 
 ---
 
@@ -45,7 +44,4 @@ It serves as a learning project as well as a solid starting template for future 
 - Integration between UI and backend  
 - Ready for deployment  
 
----
-
-## 📂 Project Structure
 
