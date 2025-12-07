@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export const Heading = () => {
     return (
+        /* heading and enter button */
         <div className="max-w-3xl space-y-4">
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
                 Where Notes Takes Shape. Welcome to <span className="underline">Graphite</span>
