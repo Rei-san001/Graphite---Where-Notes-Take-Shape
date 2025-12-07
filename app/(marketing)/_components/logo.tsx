@@ -16,6 +16,14 @@ export const Logo = () => {
                 width="40"
                 height="40"
                 alt="Logo"
+                className="dark:hidden"
+            />
+            <Image
+                src="/logo-dark-mode.svg"
+                width="40"
+                height="40"
+                alt="Logo"
+                className="hidden dark:block"
             />
             <p className={cn("text-font-semibold", font.className)}>
                 Graphite
