@@ -6,10 +6,10 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
 
 import { Logo } from "./logo";
-import { SignInButton} from "@clerk/nextjs";
+import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
-
+import Link from "next/link";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -26,20 +26,24 @@ export const Navbar = () => {
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {isLoading && <Spinner />}
 
-        {!isAuthenticated && !isLoading && (
-          <>
-            <SignInButton mode="modal">
-              <Button variant="ghost" size="sm">
-                Log in
-              </Button>
-            </SignInButton>
+        {/* Signed-out state */}
+        <SignedOut>
+          <SignInButton>
+            <Button variant="ghost" size="sm">Log in</Button>
+          </SignInButton>
 
-            <SignInButton mode="modal">
-              <Button size="sm">Get Graphite free</Button>
-            </SignInButton>
-          </>
-        )}
+          <SignInButton>
+            <Button size="sm">Get Graphite free</Button>
+          </SignInButton>
+        </SignedOut>
 
+        {/* Signed-in state */}
+        <SignedIn>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/documents">Enter Graphite</Link>
+          </Button>
+          <UserButton />
+        </SignedIn>
 
         <ModeToggle />
       </div>
