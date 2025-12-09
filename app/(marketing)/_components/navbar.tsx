@@ -12,6 +12,7 @@ import { Spinner } from "@/components/spinner";
 import Link from "next/link";
 
 export const Navbar = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isAuthenticated, isLoading } = useConvexAuth();
   const scrolled = useScrollTop();
 

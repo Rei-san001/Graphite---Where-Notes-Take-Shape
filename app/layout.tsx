@@ -3,9 +3,27 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ConvexClientProvider from "@/components/providers/convex-provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Metadata } from "next/types";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Graphite",
+  description: "Sketch Your Ideas, Shape Your Mind.",
+
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/logo-dark-mode.svg",
+        href: "/logo-dark-mode.svg",
+      }
+    ]
+  }
+};
+
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
