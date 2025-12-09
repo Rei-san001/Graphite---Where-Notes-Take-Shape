@@ -1,13 +1,17 @@
 "use client";
 
+import { useConvexAuth } from "convex/react";
 
 import { Button } from "@/components/ui/button";
 
 import { ArrowRight } from "lucide-react";
+import { Spinner } from "@/components/spinner";
+import Link from "next/link";
+import { SignInButton } from "@clerk/clerk-react";
 
 export const Heading = () => {
 
-    
+    const { isAuthenticated, isLoading } = useConvexAuth();
 
 
     return (
@@ -25,14 +29,32 @@ export const Heading = () => {
             </h3>
 
     
+        {isLoading &&(
+            <div className="w-full flex items-center justify-center">
+                <Spinner size="lg"/>
+            </div>
+        )}
+
 
             
-
-            <Button>
+        {isAuthenticated && !isLoading && (
+            <Button asChild>
+                <Link href="/documents">
                 Enter Graphite
                 <ArrowRight className="h-4 w-4 ml-2"/>
+                </Link>
             </Button>
-            
+        )}
+
+        {!isAuthenticated && !isLoading &&(
+            <SignInButton mode="modal">
+                <Button>
+                    Get Graphite free
+                    <ArrowRight className="h-4 w-4 ml-2"/>
+                </Button>
+            </SignInButton>
+        )}
+
         </div>
     );
 };
