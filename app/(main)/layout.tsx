@@ -1,4 +1,5 @@
 "use client";
+import { Toaster } from "sonner";
 
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
