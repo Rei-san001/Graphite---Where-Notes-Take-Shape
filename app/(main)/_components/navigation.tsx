@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
 
 import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings,Trash } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./user-item";
@@ -19,15 +19,19 @@ import {
  } from "@/components/ui/popover";
 
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 
 
 import { TrashBox } from "./trash-box";
+import { Navbar } from "./navbar";
 
 
 
 export const Navigation = () => {
+    const settings = useSettings();
     const search = useSearch();
+    const params = useParams();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
     
@@ -43,9 +47,11 @@ export const Navigation = () => {
 
     useEffect(() => {
         if (isMobile) {
+            // eslint-disable-next-line react-hooks/immutability
             collapse();
         }
         else{
+            // eslint-disable-next-line react-hooks/immutability
             resetWidth();
         }
     }, [isMobile]);
@@ -163,7 +169,7 @@ const handleCreate = () =>{
                 <Item
                     label="Settings"
                     icon={Settings}
-                    onClick={() => {}}
+                    onClick={settings.onOpen}
                 />
                 <Item
                 onClick={handleCreate}
@@ -211,9 +217,16 @@ const handleCreate = () =>{
                 isMobile && "left-0 w-full"
             )}
             >
-                <nav className="bg-transparent px-3 py-2 w-full">
-                    {(isCollapsed || isMobile) && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
-                </nav>
+                {!!params.documentId ? (
+                    <Navbar
+                        isCollapsed={isCollapsed}
+                        onResetWidth={resetWidth}
+                    />
+                ) : (
+                    <nav className="bg-transparent px-3 py-2 w-full">
+                        {(isCollapsed || isMobile) && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
+                    </nav>
+                )}
             </div>
         </>
     )

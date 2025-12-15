@@ -1,10 +1,16 @@
 import { Toaster } from "sonner";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Metadata } from "next/types";
+
+
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ConvexClientProvider from "@/components/providers/convex-provider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Metadata } from "next/types";
+import { ModalProvider } from "@/components/providers/modal-provider";
+
+
+
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -42,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               storageKey="graphite-theme"
             >
               <Toaster position= "bottom-center" />
+              <ModalProvider />
               {children}
             </ThemeProvider>
           </ConvexClientProvider>
