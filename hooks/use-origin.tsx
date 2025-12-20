@@ -5,6 +5,7 @@ export const useOrigin = () => {
     const origin = typeof window !== "undefined" && window.location.origin ? window.location.origin : "";
 
     useEffect (() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
