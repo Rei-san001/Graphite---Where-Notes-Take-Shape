@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased border-none`}>
         {/* ClerkProvider must wrap everything that uses Clerk hooks */}
         <ClerkProvider>
           {/* ConvexClientProvider is now correctly inside ClerkProvider */}
@@ -62,3 +62,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
