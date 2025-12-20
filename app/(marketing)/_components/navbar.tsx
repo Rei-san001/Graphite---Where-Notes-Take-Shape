@@ -4,6 +4,7 @@ import { useConvexAuth } from "convex/react";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react"; // Add this import
 
 import { Logo } from "./logo";
 import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
@@ -15,6 +16,13 @@ export const Navbar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isAuthenticated, isLoading } = useConvexAuth();
   const scrolled = useScrollTop();
+  const [mounted, setMounted] = useState(false); // Add this
+
+  // Add this useEffect
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   return (
     <div
@@ -46,7 +54,7 @@ export const Navbar = () => {
           <UserButton />
         </SignedIn>
 
-        <ModeToggle />
+        {mounted && <ModeToggle />} {/* Only render when mounted */}
       </div>
     </div>
   );

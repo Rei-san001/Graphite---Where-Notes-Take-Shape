@@ -121,9 +121,33 @@ body,
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body {
+  border: none !important;
+  outline: none !important;
+}
+
+.dark {
+  border: none !important;
+}
+
+/* Target the main layout wrapper */
+html.dark,
+html.dark body,
+.dark > div {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+
+

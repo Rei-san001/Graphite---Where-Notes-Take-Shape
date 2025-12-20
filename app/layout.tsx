@@ -8,6 +8,9 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import ConvexClientProvider from "@/components/providers/convex-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+
+
 
 
 
@@ -35,11 +38,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased border-none`}>
         {/* ClerkProvider must wrap everything that uses Clerk hooks */}
         <ClerkProvider>
           {/* ConvexClientProvider is now correctly inside ClerkProvider */}
           <ConvexClientProvider>
+            <EdgeStoreProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -51,9 +55,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ModalProvider />
               {children}
             </ThemeProvider>
+            </EdgeStoreProvider>
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>
   );
 }
+
