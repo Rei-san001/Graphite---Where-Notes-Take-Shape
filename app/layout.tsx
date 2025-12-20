@@ -8,6 +8,9 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import ConvexClientProvider from "@/components/providers/convex-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+
+
 
 
 
@@ -40,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ClerkProvider>
           {/* ConvexClientProvider is now correctly inside ClerkProvider */}
           <ConvexClientProvider>
+            <EdgeStoreProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -51,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ModalProvider />
               {children}
             </ThemeProvider>
+            </EdgeStoreProvider>
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
